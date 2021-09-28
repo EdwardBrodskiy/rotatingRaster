@@ -88,8 +88,8 @@ class MasterGUI:
         rotation_mat = np.array([[cos(radians), -sin(radians)],
                                  [sin(radians), cos(radians)]])
         rotated_image = np.zeros((self.size, self.size, 3))
-        # rotated_image[:, : ] = image[0, 0]
-        # rotated_image.fill(128)
+        rotated_image[:, :] = image[0, 0]
+
         center_shift = self.size / 2
         for i in range(self.border, self.size - self.border):
             for j in range(self.border, self.size - self.border):
@@ -107,7 +107,7 @@ class MasterGUI:
                 for point in nearby_points:
                     distance_sq = (x - point[0]) ** 2 + (y - point[1]) ** 2
                     if distance_sq <= .5:
-                        rotated_image[point[0], point[1]] += image[i, j] * (2 ** .5 / 2- distance_sq ** .5)
+                        rotated_image[point[0], point[1]] = image[i, j]
         return rotated_image
 
 
